@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+	<h1>Lista de Facturas.</h1>
+{% endblock %}
+
+{% block content %}
+
+<tbody>
+	{% if facturas %}
+	{% for factura in facturas %}
+	<tr>
+		<td>{{ factura.numero_factura }}</td>
+		<td>{{ factura.nombre_factura }}</td>
+		<td>{{ factura.fecha_maxima }}</td>
+		<td>{{ factura.cantidad }}</td>
+		<td>{{ factura.estadp_factura }}</td>
+	</tr>
+	{% endfor %}
+	{% else %}
+	<h4>No existen facturas que mostrar</h4>
+	{% endif %}
+
+
+</tbody>
+
+{% endblock %}
