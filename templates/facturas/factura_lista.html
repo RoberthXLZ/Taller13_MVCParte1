@@ -50,8 +50,10 @@
                                                     </td>
                                                     <td >
                                                         <!-- Eliminar Factura-->
-                                                        <form action="/eliminarFactura" method="GET">
-                                                            <input type="submit" value="Eliminar" />
+                                                        <form action="{% url 'factura:eliminarFactura' factura.id %} " method="GET" style="display: inline;">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="factura_id" value="{{ factura.id }}" />
+                                                            <button type="submit">Eliminar</button>
                                                         </form>
                                                     </td>
                                                 </tr>

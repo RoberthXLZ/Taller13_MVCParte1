@@ -20,7 +20,7 @@ def create(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
-        return redirect('index')
+        return redirect('factura:index')
     else:
         form = FacturaForm()
         messages.add_message(request, messages.SUCCESS, 'Error al crear Factura!')
@@ -33,24 +33,12 @@ def listar(request):
     return render(request,'facturas/factura_listaPendiente.html',{'facturas':listas})
 
 
-def eliminarFactura(request, id=0):
-    template='factura_lista.html'
-
-    if request.method == 'GET':
-        try:
-            facturaEliminada = Factura.objects.get(id=id)
-
-            if facturaEliminada:
-                facturaEliminada.estado_factura = 'Pagado'
-                facturaEliminada.save()
-                messages.add_message(request, messages.SUCCESS, 'Factura eliminada con exito!')
-
-            else:
-                messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
-        except:
-            messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
-
-        return redirect('index')
+def eliminarFactura(request, id):
+    factura = Factura.objects.get(id=id)
+    if request.method == 'POST':
+        factura.delete()
+        return redirect('factura:index')
+    return render(request, 'facturas/factura_eliminar.html', {'facturas': factura})
 
 def editarFactura(request, id):
     factura = Factura.objects.get(id=id)
@@ -62,3 +50,4 @@ def editarFactura(request, id):
             form.save()
         return redirect('factura:index')
     return render(request, 'facturas/factura_formulario.html',{'form':form})
+
