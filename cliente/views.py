@@ -9,9 +9,8 @@ from django.contrib import messages
 # Create your views here.
 
 def index(request):
-    facturas = Factura.objects.all()
-    contexto = {'facturas':facturas}
-    return render(request,'facturas/factura_lista.html',contexto)
+    facturas = Factura.objects.filter(estado_factura='Pendiente')
+    return render(request,'facturas/factura_listaPendiente.html',{'facturas':facturas})
 
 
 def create(request):
@@ -20,7 +19,7 @@ def create(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
-        return redirect('factura:listar')
+        return redirect('factura:index')
     else:
         form = FacturaForm()
         messages.add_message(request, messages.SUCCESS, 'Error al crear Factura!')
