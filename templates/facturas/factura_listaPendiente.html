@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+	<h1>Lista de Facturas Pendientes.</h1>
+{% endblock %}
+
+{% block content %}
+
+<tbody>
+	{% if listas %}
+	<table>
+	<tr>
+		<td>Nombre de Empresa</td>
+		<td>Fecha Maxima</td>
+		<td>Total</td>
+		<td>Botones</td>
+	</tr>
+	{% for factura in listas %}
+	<tr>
+		<td>{{ factura.nombre_factura }}</td>
+		<td>{{ factura.fecha_maxima }}</td>
+		<td>{{ factura.cantidad }}</td>
+		<td>
+		   <button type="submit">Editar</button>
+		   <button type="submit">Eliminar</button>
+		</td>
+	</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+	<h4>No existen facturas que mostrar</h4>
+	{% endif %}
+	<form action="/create" method="GET">
+		<input type="submit" value="Crear nueva factura" />
+	</form>
+
+
+</tbody>
+
+{% endblock %}

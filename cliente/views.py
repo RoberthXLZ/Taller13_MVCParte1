@@ -24,3 +24,6 @@ def create(request):
         form = FacturaForm()
     return render(request, 'facturas/factura_formulario.html',{'form':form})
     
+def listar(request):
+    listas = Factura.objects.filter(ESTADO_OPCIONES='Pendiente')
+    return render(request,'facturas/factura_listaPendiente.html',{'facturas':facturas})
