@@ -7,7 +7,7 @@
 {% block content %}
 
 <tbody>
-	{% if listas %}
+	{% if facturas %}
 	<table>
 	<tr>
 		<td>Nombre de Empresa</td>
@@ -15,7 +15,7 @@
 		<td>Total</td>
 		<td>Botones</td>
 	</tr>
-	{% for factura in listas %}
+	{% for factura in facturas %}
 	<tr>
 		<td>{{ factura.nombre_factura }}</td>
 		<td>{{ factura.fecha_maxima }}</td>

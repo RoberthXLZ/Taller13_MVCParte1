@@ -20,7 +20,7 @@ def create(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
-        return redirect('factura:index')
+        return redirect('factura:listar')
     else:
         form = FacturaForm()
         messages.add_message(request, messages.SUCCESS, 'Error al crear Factura!')
@@ -29,8 +29,8 @@ def create(request):
 
     
 def listar(request):
-    listas = Factura.objects.filter(ESTADO_OPCIONES='Pendiente')
-    return render(request,'facturas/factura_listaPendiente.html',{'facturas':listas})
+    facturas = Factura.objects.filter(estado_factura='Pendiente')
+    return render(request,'facturas/factura_listaPendiente.html',{'facturas':facturas})
 
 
 def eliminarFactura(request, id):
