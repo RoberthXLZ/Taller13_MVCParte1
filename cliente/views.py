@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from cliente.models import Factura
 from cliente.forms import FacturaForm
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -19,11 +19,46 @@ def create(request):
         form = FacturaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
         return redirect('index')
     else:
         form = FacturaForm()
+        messages.add_message(request, messages.SUCCESS, 'Error al crear Factura!')
     return render(request, 'facturas/factura_formulario.html',{'form':form})
+
+
     
 def listar(request):
     listas = Factura.objects.filter(ESTADO_OPCIONES='Pendiente')
-    return render(request,'facturas/factura_listaPendiente.html',{'facturas':facturas})
+    return render(request,'facturas/factura_listaPendiente.html',{'facturas':listas})
+
+
+def eliminarFactura(request, id=0):
+    template='factura_lista.html'
+
+    if request.method == 'GET':
+        try:
+            facturaEliminada = Factura.objects.get(id=id)
+
+            if facturaEliminada:
+                facturaEliminada.estado_factura = 'Pagado'
+                facturaEliminada.save()
+                messages.add_message(request, messages.SUCCESS, 'Factura eliminada con exito!')
+
+            else:
+                messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
+        except:
+            messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
+
+        return redirect('index')
+
+def editarFactura(request, id):
+    factura = Factura.objects.get(id=id)
+    if request.method =='GET':
+        form = FacturaForm(instance=factura)
+    else:
+        form = FacturaForm(request.POST, instance=factura)
+        if form.is_valid():
+            form.save()
+        return redirect('factura:index')
+    return render(request, 'facturas/factura_formulario.html',{'form':form})

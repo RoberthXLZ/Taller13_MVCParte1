@@ -15,9 +15,9 @@ class FacturaForm (forms.ModelForm):
             'estado_factura',
         ]
         labels = {
-            'numero_factura': 'Número',
+            'numero_factura': 'Numero',
             'nombre_factura': 'Empresa',
-            'fecha_maxima': 'Fecha Máxima',
+            'fecha_maxima': 'Fecha Maxima',
             'cantidad': 'Cantidad',
             'estado_factura': 'Estado',
         }

@@ -14,11 +14,7 @@ class Factura (models.Model):
 		(LUZ, 'Luz'),
 		(TELEFONO, 'Telefono'),
 	)
-	nombre_factura = models.CharField(
-		max_length=8,
-		choices=FACTURA_OPCIONES,
-		default=AGUA,
-	)
+	nombre_factura = models.CharField(max_length=8,choices=FACTURA_OPCIONES,default=AGUA,)
 	fecha_maxima = models.DateField()
 	cantidad = models.DecimalField(max_digits = 8, decimal_places = 2)
 	PAGADO = 'Pagado'	
@@ -29,9 +25,5 @@ class Factura (models.Model):
 		(PENDIENTE, 'Pendiente'),
 		(ACUMULADO, 'Acumulado'),
 	)
-	estado_factura = models.CharField(
-		max_length=11,
-		choices=ESTADO_OPCIONES,
-		default=PAGADO,
-	)
+	estado_factura = models.CharField(max_length=11,choices=ESTADO_OPCIONES,default='Pagado')
 	
