@@ -50,6 +50,15 @@ def eliminarFactura(request, id):
         return redirect('factura:index')
     return render(request, 'facturas/factura_eliminar.html', {'facturas': factura})
 
+    def eliminarRecibo(request, id):
+    recibo = Recibo.objects.get(id=id)
+    if request.method == 'POST':
+        recibo.delete()
+        return redirect('factura:index')
+    return render(request, 'recibos/recibo_eliminar.html', {'recibos': recibo})
+
+
+
 def editarFactura(request, id):
     factura = Factura.objects.get(id=id)
     if request.method =='GET':

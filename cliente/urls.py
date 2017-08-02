@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 
-from cliente.views import create, index, eliminarFactura,editarFactura,listar,createRecibo
+from cliente.views import create, index, eliminarFactura,editarFactura,listar,createRecibo,eliminarRecibo,
 app_name = 'factura'
 
 urlpatterns = [
@@ -9,6 +9,6 @@ urlpatterns = [
     url(r'^create$', create, name = 'create'),
     url(r'^editar/(?P<id>\d+)$', editarFactura, name='editarFactura'),
     url(r'^eliminar/(?P<id>\d+)$', eliminarFactura, name='eliminarFactura'),
-
-    
+    url(r'^eliminar/(?P<id>\d+)$', eliminarRecibo, name='eliminarRecibo'),
+   
 ]
