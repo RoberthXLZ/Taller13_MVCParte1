@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
-from cliente.models import Factura
+from cliente.models import Factura, Recibo
 from cliente.forms import FacturaForm
 from django.contrib import messages
 
@@ -49,4 +49,17 @@ def editarFactura(request, id):
             form.save()
         return redirect('factura:index')
     return render(request, 'facturas/factura_formulario.html',{'form':form})
+
+
+def editarRecibo(request, id):
+    recibo = Recibo.objects.get(id=id)
+    if request.method =='GET':
+        form = ReciboForm(instance=recibo)
+    else:
+        form = ReciboForm(request.POST, instance=recibo)
+        if form.is_valid():
+            form.save()
+        return redirect('recibo:index')
+    return render(request, 'recibos/recibo_formulario.html',{'form':form})
+
 
