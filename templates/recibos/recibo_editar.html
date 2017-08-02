@@ -5,29 +5,10 @@
     <title>Recibo Editar</title>
 </head>
 <body>
-    <form class="form-vertical" method="post" action="{% url 'recibo:actualizarRecibo' %}">
+    <h1>Editar Recibo</h1>
+    <form class="form-vertical" method="post">
         {% csrf_token %}
-        <h1>Editar Recibo.</h1>
-        <p>
-             <label for="id_numero_recibo">Numero:</label>
-             <textarea rows="1" name="serie" maxlength="50" placeholder="serie">{{recibo.numero_recibo}}</textarea>
-        </p>
-        <p>
-             <label for="id_fech_pago">Fecha Pago:</label>
-              <textarea rows="1" name="serie" maxlength="50" placeholder="serie">{{recibo.fecha_pago}}</textarea>
-        </p>
-        <input>
-             <label for="id_nombre_de_quien_recibe">Nombre de quien recibe:</label>
-              <textarea rows="1" name="serie" maxlength="50" placeholder="serie">{{recibo.nombre_de_quien_recibe}}</textarea>
-        </p>
-        <p>
-             <label for="id_concepto_recibo">Concepto Recibo:</label>
-              <textarea rows="1" name="serie" maxlength="50" placeholder="serie">{{recibo.concepto_recibo}}</textarea>
-        </p>
-        <p>
-             <label for="id_cantidad">Cantidad:</label>
-              <textarea rows="1" name="serie" maxlength="50" placeholder="serie">{{recibo.cantidad}}</textarea>
-        </p>
+	    {{ form.as_p }}
         <button type="submit">Guardar</button>
 
     </form>
