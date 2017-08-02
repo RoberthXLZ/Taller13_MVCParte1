@@ -4,7 +4,7 @@ from cliente.views import create, index, eliminarFactura,editarFactura,listar,cr
 app_name = 'factura'
 
 urlpatterns = [
-    url(r'^$', index, name = 'index'),
+    url(r'^$', index_general, name = 'index'),
     url(r'^createRecibo$',createRecibo, name = 'createRecibo'),
     url(r'^create$', create, name = 'create'),
     url(r'^editar/(?P<id>\d+)$', editarFactura, name='editarFactura'),
