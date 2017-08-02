@@ -7,8 +7,10 @@ from django.contrib import messages
 
 
 # Create your views here.
+def index_general(request):
+    return render(request,'index.html',{})
 
-def index(request):
+def index_factura(request):
     facturas = Factura.objects.filter(estado_factura='Pendiente')
     return render(request,'facturas/factura_listaPendiente.html',{'facturas':facturas})
 
@@ -69,4 +71,8 @@ def editarFactura(request, id):
             form.save()
         return redirect('factura:index')
     return render(request, 'facturas/factura_formulario.html',{'form':form})
+
+def index_Recibo(request):
+    recibos = Recibo.objects.all()
+    return render(request,'recibos/lista_recibo.html',{'recibos':recibos})
 
