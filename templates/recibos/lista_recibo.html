@@ -42,17 +42,17 @@
                                                     <td >{{ recibo.cantidad }}</td>
                                                     <!-- Editar diagnostico-->
                                                     <td >
-                                                        <form action="{%  %} " method="GET" style="display: inline;">
+                                                        <form action="{% url 'factura:editarRecibo' recibo.id %} " method="GET" style="display: inline;">
                                                             {% csrf_token %}
-                                                            <input type="hidden" name="" value="{{  }}" />
+                                                            <input type="hidden" name="" value="{{ recibo.id }}" />
                                                             <button type="submit">Editar</button>
                                                         </form>
                                                     </td>
                                                     <td >
                                                         <!-- Eliminar Factura-->
-                                                        <form action="{%  %} " method="GET" style="display: inline;">
+                                                        <form action="{% url 'factura:eliminarRecibo' recibo.id %} " method="GET" style="display: inline;">
                                                             {% csrf_token %}
-                                                            <input type="hidden" name="factura_id" value="{{  }}" />
+                                                            <input type="hidden" name="factura_id" value="{{ recibo.id }}" />
                                                             <button type="submit">Eliminar</button>
                                                         </form>
                                                     </td>
@@ -63,7 +63,7 @@
 											<h4>No existen recibos que mostrar</h4>
 										{% endif %}
 </div>
-<form action="/create" method="GET">
+<form action="/createRecibo" method="GET">
 		<input type="submit" value="Crear nuevo recibo" />
 </form>
 

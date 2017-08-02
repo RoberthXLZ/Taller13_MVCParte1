@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
-from cliente.models import Factura
+from cliente.models import Factura, Recibo
 from cliente.forms import FacturaForm, ReciboForm
 from django.contrib import messages
 
@@ -21,7 +21,7 @@ def create(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
-        return redirect('factura:index')
+        return redirect('factura:index_factura')
     else:
         form = FacturaForm()
         messages.add_message(request, messages.SUCCESS, 'Error al crear Factura!')
@@ -33,7 +33,7 @@ def createRecibo(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Recibo creada con exito!')
-        return redirect('factura:index')
+        return redirect('factura:index_recibo')
     else:
         form = ReciboForm()
         messages.add_message(request, messages.SUCCESS, 'Error al crear Recibo!')
@@ -49,7 +49,7 @@ def eliminarFactura(request, id):
     factura = Factura.objects.get(id=id)
     if request.method == 'POST':
         factura.delete()
-        return redirect('factura:index')
+        return redirect('factura:index_factura')
     return render(request, 'facturas/factura_eliminar.html', {'facturas': factura})
 
 def editarFactura(request, id):
@@ -60,7 +60,7 @@ def editarFactura(request, id):
         form = FacturaForm(request.POST, instance=factura)
         if form.is_valid():
             form.save()
-        return redirect('factura:index')
+        return redirect('factura:index_factura')
     return render(request, 'facturas/factura_formulario.html',{'form':form})
 
 def index_Recibo(request):
@@ -75,5 +75,13 @@ def editarRecibo(request, id):
         form = ReciboForm(request.POST, instance=recibo)
         if form.is_valid():
             form.save()
-        return redirect('factura:index')
+        return redirect('factura:index_recibo')
     return render(request, 'recibos/recibo_editar.html',{'form':form})
+
+def eliminarRecibo(request, id):
+    recibo = Recibo.objects.get(id=id)
+    if request.method == 'POST':
+        recibo.delete()
+        return redirect('factura:index_recibo')
+    return render(request, 'recibos/recibo_eliminar.html', {'recibos': factura})
+
