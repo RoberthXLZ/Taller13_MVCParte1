@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^editar/(?P<id>\d+)$', editarFactura, name='editarFactura'),
     url(r'^eliminar/(?P<id>\d+)$', eliminarFactura, name='eliminarFactura'),
     url(r'^eliminar/(?P<id>\d+)$', eliminarRecibo, name='eliminarRecibo'),
+    url(r'^lista$',index_Recibo, name = 'listaRecibo'),
    
 ]
