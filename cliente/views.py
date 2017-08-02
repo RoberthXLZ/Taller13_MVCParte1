@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from cliente.models import Factura
-from cliente.forms import FacturaForm
+from cliente.forms import FacturaForm, ReciboForm
 from django.contrib import messages
 
 
@@ -25,6 +25,17 @@ def create(request):
         messages.add_message(request, messages.SUCCESS, 'Error al crear Factura!')
     return render(request, 'facturas/factura_formulario.html',{'form':form})
 
+def createRecibo(request):
+    if request.method == 'POST':
+        form = ReciboForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Recibo creada con exito!')
+        return redirect('factura:index')
+    else:
+        form = ReciboForm()
+        messages.add_message(request, messages.SUCCESS, 'Error al crear Recibo!')
+    return render(request, 'recibos/recibo_formulario.html',{'form':form})
 
     
 def listar(request):

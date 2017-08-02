@@ -30,7 +30,7 @@ class Factura (models.Model):
 
 class Recibo (models.Model):
         numero_recibo = models.CharField(max_length=16)
-        echa_pago = models.DateField()
+        fecha_pago = models.DateField()
         nombre_de_quien_recibe = models.CharField(max_length=30)
         AGUA = 'Agua'
         LUZ = 'Luz'
