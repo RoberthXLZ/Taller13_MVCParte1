@@ -52,15 +52,6 @@ def eliminarFactura(request, id):
         return redirect('factura:index')
     return render(request, 'facturas/factura_eliminar.html', {'facturas': factura})
 
-    def eliminarRecibo(request, id):
-    recibo = Recibo.objects.get(id=id)
-    if request.method == 'POST':
-        recibo.delete()
-        return redirect('factura:index')
-    return render(request, 'recibos/recibo_eliminar.html', {'recibos': recibo})
-
-
-
 def editarFactura(request, id):
     factura = Factura.objects.get(id=id)
     if request.method =='GET':
@@ -76,3 +67,13 @@ def index_Recibo(request):
     recibos = Recibo.objects.all()
     return render(request,'recibos/lista_recibo.html',{'recibos':recibos})
 
+def editarRecibo(request, id):
+    recibo = Recibo.objects.get(id=id)
+    if request.method =='GET':
+        form = ReciboForm(instance=recibo)
+    else:
+        form = ReciboForm(request.POST, instance=recibo)
+        if form.is_valid():
+            form.save()
+        return redirect('factura:index')
+    return render(request, 'recibos/recibo_editar.html',{'form':form})
