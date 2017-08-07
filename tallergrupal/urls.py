@@ -13,10 +13,16 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url, include
 from django.contrib import admin
+from cliente.views import FacturaViewSet,ReciboViewSet
+from rest_framework.routers import SimpleRouter
+
+router = SimpleRouter()
+router.register(r'factura', FacturaViewSet)
+router.register(r'recibo', ReciboViewSet)
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('cliente.urls'))
+    url(r'^admin/', admin.site.urls),
+    url(r'^',include(router.urls)),
 ]
