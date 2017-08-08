@@ -48,7 +48,7 @@ export class ApiService {
 
   public updateRecibo(recibo: Recibo): Observable<Recibo> {
     return this.http
-      .put(API_URL + '/recibo/' + recibo.id, recibo)
+      .put(API_URL + '/recibo/' + recibo.id + '/', recibo)
       .map(response => {
         return new Recibo(response.json());
       })

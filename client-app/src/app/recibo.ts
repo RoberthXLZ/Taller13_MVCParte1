@@ -1,4 +1,5 @@
 export class Recibo {
+  id: number;
   numero_recibo: string = '';
   fecha_pago: Date;
   nombre_de_quien_recibe: string = '';

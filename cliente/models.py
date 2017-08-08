@@ -29,6 +29,7 @@ class Factura (models.Model):
 	
 
 class Recibo (models.Model):
+        id = models.AutoField(primary_key = True)
         numero_recibo = models.CharField(max_length=16)
         fecha_pago = models.DateField()
         nombre_de_quien_recibe = models.CharField(max_length=30)

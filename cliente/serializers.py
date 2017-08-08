@@ -11,4 +11,4 @@ class FacturaSerializer(ModelSerializer):
 class ReciboSerializer(ModelSerializer):
 	class Meta:
 		model = Recibo
-		fields = ('numero_recibo','fecha_pago','nombre_de_quien_recibe','concepto_recibo','cantidad')
+		fields = ('id','numero_recibo','fecha_pago','nombre_de_quien_recibe','concepto_recibo','cantidad')

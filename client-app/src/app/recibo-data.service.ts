@@ -4,7 +4,7 @@ import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class TodoDataService {
+export class ReciboDataService {
 
   constructor(
     private api: ApiService
